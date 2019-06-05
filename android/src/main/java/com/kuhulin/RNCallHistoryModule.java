@@ -20,7 +20,10 @@ import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 public class RNCallHistoryModule extends ReactContextBaseJavaModule {
@@ -47,12 +50,13 @@ public class RNCallHistoryModule extends ReactContextBaseJavaModule {
     String selection = CallLog.Calls.DATE + " >= ?";
     Long dateStr;
     try {
-      dateStr = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").parse(date).getTime();
+      SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+      Date date1 = formatter.parse(date);
       Cursor cursor = reactContext.getContentResolver().query(
               CallLog.Calls.CONTENT_URI,
               null,
               CallLog.Calls.DATE + ">?",
-              new String[]{"" + dateStr},
+              new String[]{String.valueOf(date1.getTime())},
               CallLog.Calls.DATE + " DESC"
       );
 
