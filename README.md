@@ -1,13 +1,13 @@
 
-# react-native-phone-call-recorder
+# react-native-call-history
 
 ## Getting started
 
-`$ npm install react-native-phone-call-recorder --save`
+`$ npm install react-native-call-history --save`
 
 ### Mostly automatic installation
 
-`$ react-native link react-native-phone-call-recorder`
+`$ react-native link react-native-call-history`
 
 ### Manual installation
 
