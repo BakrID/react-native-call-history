@@ -47,7 +47,7 @@ public class RNCallHistoryModule extends ReactContextBaseJavaModule {
     String selection = CallLog.Calls.DATE + " >= ?";
     Long dateStr;
     try {
-      dateStr = new SimpleDateFormat("dd/MM/yyyy").parse(date).getTime();
+      dateStr = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").parse(date).getTime();
       Cursor cursor = reactContext.getContentResolver().query(
               CallLog.Calls.CONTENT_URI,
               null,
