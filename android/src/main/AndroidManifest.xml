@@ -1,6 +1,6 @@
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.kuhulin.call-history">
+          package="com.kuhulin.callhistory">
     <uses-permission android:name="android.permission.READ_CALL_LOG" />
 </manifest>
   
