@@ -41,22 +41,23 @@ public class RNCallHistoryModule extends ReactContextBaseJavaModule {
   }
 
   @ReactMethod
-  public void getCallHistory(String date, Promise promise) {
+  public void getCallHistory(String startDate, String endDate, Promise promise) {
     String[] projection = new String[]{
             CallLog.Calls.NUMBER,
             CallLog.Calls.TYPE,
             CallLog.Calls.DATE
     };
-    String selection = CallLog.Calls.DATE + " >= ?";
+    String selection = CallLog.Calls.DATE + " >= ? and "+CallLog.Calls.DATE + " <= ?";
     Long dateStr;
     try {
       SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-      Date date1 = formatter.parse(date);
+      Date date1 = formatter.parse(startDate);
+      Date date2 = formatter.parse(endDate);
       Cursor cursor = reactContext.getContentResolver().query(
               CallLog.Calls.CONTENT_URI,
               null,
-              CallLog.Calls.DATE + ">?",
-              new String[]{String.valueOf(date1.getTime())},
+              selection,
+              new String[]{String.valueOf(date1.getTime()), String.valueOf(date2)},
               CallLog.Calls.DATE + " DESC"
       );
 
